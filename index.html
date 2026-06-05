@@ -81,6 +81,7 @@ body{
   color:var(--ink);
   line-height:1.6;
   font-size:18px;
+  overflow-x:clip;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   transition:background .4s var(--ease), color .4s var(--ease);
@@ -320,6 +321,8 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
   .nav-cta .btn-primary{ padding:9px 15px; font-size:14px; }
   .nav-cta{ gap:8px; }
   .hero-actions .btn{ padding:12px 20px; font-size:15px; }
+  .brand small{ white-space:normal; }
+  .brand{ font-size:20px; }
 }
 .mobile-menu.open{ display:flex; }
 .mobile-menu{ display:none; flex-direction:column; gap:4px; padding:14px 22px 22px; border-top:1px solid var(--line); background:var(--bg); }
