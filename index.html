@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en" data-scheme="forest" data-headings="serif" data-corners="rounded">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RGC Accounting — Bookkeeping & Tax for Contractors and Small Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============ COLOR SCHEMES (all green) ============ */
+:root[data-scheme="emerald"]{
+  --bg:        oklch(0.985 0.010 162);
+  --surface:   oklch(1 0 0);
+  --surface-2: oklch(0.965 0.018 165);
+  --ink:       oklch(0.255 0.030 165);
+  --muted:     oklch(0.48 0.025 165);
+  --primary:   oklch(0.585 0.115 162);
+  --primary-deep: oklch(0.40 0.085 163);
+  --primary-soft: oklch(0.945 0.034 165);
+  --on-primary: oklch(0.985 0.012 162);
+  --line:      oklch(0.90 0.018 165);
+}
+:root[data-scheme="sage"]{
+  --bg:        oklch(0.984 0.008 128);
+  --surface:   oklch(1 0 0);
+  --surface-2: oklch(0.963 0.014 130);
+  --ink:       oklch(0.265 0.022 135);
+  --muted:     oklch(0.49 0.020 135);
+  --primary:   oklch(0.575 0.062 138);
+  --primary-deep: oklch(0.40 0.050 138);
+  --primary-soft: oklch(0.945 0.022 132);
+  --on-primary: oklch(0.985 0.010 128);
+  --line:      oklch(0.90 0.014 132);
+}
+:root[data-scheme="forest"]{
+  --bg:        oklch(0.982 0.009 150);
+  --surface:   oklch(1 0 0);
+  --surface-2: oklch(0.960 0.016 152);
+  --ink:       oklch(0.230 0.030 156);
+  --muted:     oklch(0.46 0.028 156);
+  --primary:   oklch(0.435 0.088 156);
+  --primary-deep: oklch(0.315 0.066 156);
+  --primary-soft: oklch(0.940 0.030 152);
+  --on-primary: oklch(0.980 0.012 150);
+  --line:      oklch(0.895 0.018 152);
+}
+:root[data-scheme="teal"]{
+  --bg:        oklch(0.985 0.010 190);
+  --surface:   oklch(1 0 0);
+  --surface-2: oklch(0.963 0.018 188);
+  --ink:       oklch(0.250 0.030 196);
+  --muted:     oklch(0.48 0.026 196);
+  --primary:   oklch(0.560 0.092 192);
+  --primary-deep: oklch(0.395 0.072 194);
+  --primary-soft: oklch(0.945 0.030 188);
+  --on-primary: oklch(0.985 0.012 190);
+  --line:      oklch(0.90 0.018 188);
+}
+
+/* ============ STYLE TWEAKS ============ */
+:root[data-headings="serif"]{ --font-head:'Newsreader', Georgia, serif; --head-weight:500; --head-tracking:-0.01em; }
+:root[data-headings="sans"]{ --font-head:'Hanken Grotesk', system-ui, sans-serif; --head-weight:700; --head-tracking:-0.025em; }
+
+:root[data-corners="rounded"]{ --radius:18px; --radius-sm:11px; --pill:999px; }
+:root[data-corners="sharp"]{ --radius:4px; --radius-sm:3px; --pill:4px; }
+
+:root{
+  --font-body:'Hanken Grotesk', system-ui, sans-serif;
+  --amber: oklch(0.80 0.12 78);
+  --maxw: 1180px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+/* ============ BASE ============ */
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.6;
+  font-size:18px;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  transition:background .4s var(--ease), color .4s var(--ease);
+}
+h1,h2,h3,h4{ font-family:var(--font-head); font-weight:var(--head-weight); letter-spacing:var(--head-tracking); line-height:1.08; color:var(--ink); text-wrap:balance; }
+p{ text-wrap:pretty; }
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+section{ scroll-margin-top:88px; }
+
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+.eyebrow{
+  font-family:var(--font-body); font-weight:600; font-size:13px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--primary); display:inline-flex; align-items:center; gap:10px;
+}
+.eyebrow::before{ content:""; width:22px; height:1.5px; background:var(--primary); display:inline-block; }
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex; align-items:center; gap:9px; font-family:var(--font-body);
+  font-weight:600; font-size:16px; padding:14px 26px; border-radius:var(--pill);
+  cursor:pointer; border:1.5px solid transparent; transition:all .25s var(--ease); white-space:nowrap;
+}
+.btn-primary{ background:var(--primary); color:var(--on-primary); }
+.btn-primary:hover{ background:var(--primary-deep); transform:translateY(-2px); box-shadow:0 12px 26px -12px var(--primary); }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+.btn-ghost:hover{ border-color:var(--primary); color:var(--primary); }
+.btn-light{ background:var(--surface); color:var(--primary-deep); }
+.btn-light:hover{ transform:translateY(-2px); box-shadow:0 12px 26px -14px rgba(0,0,0,.4); }
+.btn .arrow{ transition:transform .25s var(--ease); }
+.btn:hover .arrow{ transform:translateX(3px); }
+
+/* ============ HEADER ============ */
+header{
+  position:sticky; top:0; z-index:50; transition:all .3s var(--ease);
+  background:color-mix(in oklch, var(--bg) 80%, transparent); backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+}
+header.scrolled{ border-bottom-color:var(--line); background:color-mix(in oklch, var(--bg) 92%, transparent); }
+.nav{ display:flex; align-items:center; justify-content:space-between; height:74px; }
+.brand{ display:flex; align-items:center; gap:12px; font-family:var(--font-head); font-weight:var(--head-weight); font-size:22px; letter-spacing:-.01em; white-space:nowrap; }
+.mark{
+  width:38px; height:38px; border-radius:11px; background:var(--primary); color:var(--on-primary);
+  display:grid; place-items:center; font-family:var(--font-head); font-weight:600; font-size:17px; letter-spacing:.02em;
+  box-shadow:0 6px 16px -8px var(--primary);
+}
+.brand small{ display:block; font-family:var(--font-body); font-weight:500; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-top:1px; }
+.nav-links{ display:flex; align-items:center; gap:34px; }
+.nav-links a{ font-size:15.5px; font-weight:500; color:var(--muted); transition:color .2s; }
+.nav-links a:hover{ color:var(--ink); }
+.nav-cta{ display:flex; align-items:center; gap:14px; }
+.nav-phone{ font-weight:600; font-size:15px; color:var(--ink); }
+.nav-phone span{ color:var(--muted); font-weight:500; }
+.burger{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px; }
+.burger span{ width:24px; height:2px; background:var(--ink); border-radius:2px; transition:.3s; }
+
+/* ============ HERO ============ */
+.hero{ padding:78px 0 90px; position:relative; overflow:hidden; }
+.hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:64px; align-items:center; }
+.hero h1{ font-size:clamp(40px, 5.4vw, 68px); margin:22px 0 22px; }
+.hero h1 em{ font-style:italic; color:var(--primary); }
+.hero-sub{ font-size:20px; color:var(--muted); max-width:30em; margin-bottom:34px; }
+.hero-actions{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+.hero-trust{ display:flex; flex-wrap:wrap; gap:26px; margin-top:40px; padding-top:30px; border-top:1px solid var(--line); }
+.trust-item{ display:flex; flex-direction:column; gap:2px; }
+.trust-item b{ font-family:var(--font-head); font-weight:600; font-size:26px; color:var(--ink); }
+.trust-item span{ font-size:13.5px; color:var(--muted); font-weight:500; }
+
+.hero-visual{ position:relative; }
+.hero-photo{ aspect-ratio:4/5; border-radius:var(--radius); }
+.hero-badge{
+  position:absolute; bottom:24px; left:-22px; background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius-sm); padding:16px 20px; box-shadow:0 22px 50px -24px rgba(0,0,0,.35);
+  display:flex; align-items:center; gap:14px; max-width:255px;
+}
+.hero-badge .dot{ width:42px; height:42px; border-radius:50%; background:var(--primary-soft); color:var(--primary-deep); display:grid; place-items:center; font-weight:700; flex-shrink:0; }
+.hero-badge p{ font-size:13.5px; line-height:1.35; color:var(--muted); }
+.hero-badge b{ color:var(--ink); }
+.hero-blob{ position:absolute; width:340px; height:340px; border-radius:50%; background:var(--primary-soft); filter:blur(10px); top:-60px; right:-80px; z-index:-1; opacity:.7; }
+
+/* image placeholder */
+.ph{
+  background-color:var(--primary-soft);
+  background-image:repeating-linear-gradient(135deg, color-mix(in oklch, var(--primary) 14%, transparent) 0 2px, transparent 2px 13px);
+  display:grid; place-items:center; color:var(--primary-deep); position:relative; overflow:hidden;
+}
+.ph::after{
+  content:attr(data-label); font-family:ui-monospace, 'SF Mono', Menlo, monospace; font-size:12px;
+  letter-spacing:.05em; background:var(--surface); padding:7px 13px; border-radius:var(--pill);
+  border:1px solid var(--line); color:var(--muted); box-shadow:0 4px 14px -8px rgba(0,0,0,.3);
+}
+
+/* ============ MARQUEE / clients ============ */
+.logos{ padding:30px 0 6px; border-top:1px solid var(--line); }
+.logos-row{ display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap; }
+.logos-row span{ font-family:var(--font-head); font-style:italic; font-size:19px; color:var(--muted); opacity:.7; }
+.logos-lead{ font-size:13px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--muted); }
+
+/* ============ SECTION SHELL ============ */
+.section{ padding:96px 0; }
+.section-head{ max-width:680px; margin-bottom:54px; }
+.section-head h2{ font-size:clamp(32px, 4vw, 46px); margin:18px 0 18px; }
+.section-head p{ font-size:19px; color:var(--muted); }
+.section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+.section-head.center .eyebrow::before{ display:none; }
+
+/* ============ SERVICES ============ */
+.services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.svc{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:32px 30px;
+  transition:all .3s var(--ease); position:relative;
+}
+.svc:hover{ transform:translateY(-5px); box-shadow:0 26px 50px -30px rgba(0,0,0,.32); border-color:color-mix(in oklch, var(--primary) 40%, var(--line)); }
+.svc-num{ font-family:var(--font-head); font-size:14px; font-weight:600; color:var(--primary); letter-spacing:.05em; }
+.svc h3{ font-size:23px; margin:16px 0 11px; }
+.svc p{ font-size:16px; color:var(--muted); line-height:1.6; }
+.svc ul{ list-style:none; margin-top:18px; display:flex; flex-direction:column; gap:9px; }
+.svc li{ font-size:14.5px; color:var(--ink); display:flex; align-items:center; gap:10px; }
+.svc li::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--primary); flex-shrink:0; }
+.svc-wide{ grid-column:span 1; }
+
+/* ============ PROCESS ============ */
+.process{ background:var(--surface-2); }
+.steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; counter-reset:step; }
+.step{ position:relative; padding-top:30px; }
+.step::before{
+  counter-increment:step; content:"0" counter(step);
+  font-family:var(--font-head); font-size:15px; font-weight:600; color:var(--on-primary);
+  width:42px; height:42px; border-radius:50%; background:var(--primary); display:grid; place-items:center; margin-bottom:20px;
+}
+.step .line{ position:absolute; top:51px; left:42px; right:-20px; height:1.5px; background:var(--line); }
+.step:last-child .line{ display:none; }
+.step h3{ font-size:21px; margin-bottom:9px; }
+.step p{ font-size:15.5px; color:var(--muted); }
+
+/* ============ ABOUT ============ */
+.about-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:60px; align-items:center; }
+.about-photo{ aspect-ratio:1/1.12; border-radius:var(--radius); }
+.about h2{ font-size:clamp(30px,3.6vw,44px); margin:18px 0 22px; }
+.about p{ font-size:18px; color:var(--muted); margin-bottom:18px; }
+.about p strong{ color:var(--ink); font-weight:600; }
+.about-sign{ font-family:var(--font-head); font-style:italic; font-size:27px; color:var(--primary); margin-top:8px; }
+.about-stats{ display:flex; gap:40px; margin-top:30px; padding-top:28px; border-top:1px solid var(--line); }
+.about-stats b{ font-family:var(--font-head); font-weight:600; font-size:32px; display:block; color:var(--ink); }
+.about-stats span{ font-size:14px; color:var(--muted); }
+
+/* ============ PRICING ============ */
+.pricing{ background:var(--surface-2); }
+.bill-toggle{ display:inline-flex; align-items:center; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:var(--pill); padding:5px; margin:24px auto 0; }
+.bill-toggle button{ font-family:var(--font-body); font-weight:600; font-size:14.5px; padding:9px 20px; border-radius:var(--pill); border:none; background:transparent; color:var(--muted); cursor:pointer; transition:.25s; }
+.bill-toggle button.active{ background:var(--primary); color:var(--on-primary); }
+.bill-save{ font-size:13px; color:var(--primary); font-weight:600; margin-left:4px; }
+.price-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:48px; align-items:start; }
+.plan{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:34px 30px; transition:all .3s var(--ease); }
+.plan.featured{ background:var(--primary-deep); color:var(--on-primary); border-color:var(--primary-deep); transform:scale(1.03); box-shadow:0 30px 60px -30px var(--primary); }
+.plan.featured h3, .plan.featured .price, .plan.featured .price-sub{ color:var(--on-primary); }
+.plan-tag{ font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; display:none; }
+.plan.featured .plan-tag{ display:block; }
+.plan h3{ font-size:22px; }
+.plan-desc{ font-size:14.5px; color:var(--muted); margin:6px 0 22px; min-height:42px; }
+.plan.featured .plan-desc{ color:color-mix(in oklch, var(--on-primary) 78%, transparent); }
+.price{ font-family:var(--font-head); font-weight:600; font-size:46px; line-height:1; }
+.price small{ font-size:17px; font-weight:500; color:var(--muted); font-family:var(--font-body); }
+.plan.featured .price small{ color:color-mix(in oklch, var(--on-primary) 75%, transparent); }
+.price-sub{ font-size:13.5px; color:var(--muted); margin-top:6px; }
+.plan ul{ list-style:none; margin:24px 0; display:flex; flex-direction:column; gap:12px; }
+.plan li{ font-size:15px; display:flex; align-items:flex-start; gap:11px; }
+.plan li::before{ content:"✓"; color:var(--primary); font-weight:700; flex-shrink:0; }
+.plan.featured li::before{ color:var(--amber); }
+.plan .btn{ width:100%; justify-content:center; }
+.plan.featured .btn-ghost{ border-color:color-mix(in oklch,var(--on-primary) 40%,transparent); color:var(--on-primary); }
+.plan.featured .btn-ghost:hover{ background:color-mix(in oklch,var(--on-primary) 12%,transparent); border-color:var(--on-primary); }
+.price-note{ text-align:center; margin-top:32px; font-size:15px; color:var(--muted); }
+.price-note a{ color:var(--primary); font-weight:600; text-decoration:underline; text-underline-offset:3px; }
+
+/* ============ TESTIMONIALS ============ */
+.tgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.tcard{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:32px 30px; display:flex; flex-direction:column; }
+.stars{ color:var(--amber); letter-spacing:3px; font-size:15px; margin-bottom:16px; }
+.tcard blockquote{ font-size:17.5px; line-height:1.55; color:var(--ink); flex:1; }
+.tcard blockquote::before{ content:"“"; font-family:var(--font-head); }
+.tperson{ display:flex; align-items:center; gap:13px; margin-top:24px; padding-top:22px; border-top:1px solid var(--line); }
+.tavatar{ width:46px; height:46px; border-radius:50%; background:var(--primary-soft); color:var(--primary-deep); display:grid; place-items:center; font-weight:700; font-size:16px; flex-shrink:0; }
+.tperson b{ font-size:15.5px; display:block; font-weight:600; }
+.tperson span{ font-size:13.5px; color:var(--muted); }
+
+/* ============ CTA ============ */
+.cta{ padding:30px 0 100px; }
+.cta-box{
+  background:var(--primary-deep); color:var(--on-primary); border-radius:calc(var(--radius) + 8px);
+  padding:72px 64px; text-align:center; position:relative; overflow:hidden;
+}
+.cta-box .eyebrow{ color:color-mix(in oklch,var(--on-primary) 85%,transparent); justify-content:center; }
+.cta-box .eyebrow::before{ background:color-mix(in oklch,var(--on-primary) 70%,transparent); }
+.cta-box h2{ color:var(--on-primary); font-size:clamp(32px,4.4vw,52px); margin:18px auto 18px; max-width:16em; }
+.cta-box p{ font-size:20px; color:color-mix(in oklch,var(--on-primary) 82%,transparent); max-width:34em; margin:0 auto 36px; }
+.cta-contact{ display:flex; flex-wrap:wrap; gap:16px 40px; justify-content:center; align-items:center; }
+.cta-contact a{ font-size:21px; font-weight:600; display:inline-flex; align-items:center; gap:11px; }
+.cta-contact a:hover{ text-decoration:underline; text-underline-offset:4px; }
+.cta-glow{ position:absolute; width:460px; height:460px; border-radius:50%; background:color-mix(in oklch,var(--on-primary) 8%,transparent); top:-180px; right:-120px; }
+.cta-glow.two{ top:auto; bottom:-220px; left:-140px; right:auto; }
+
+/* ============ FOOTER ============ */
+footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
+.foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; }
+.foot-brand p{ font-size:15px; color:var(--muted); margin-top:18px; max-width:26em; }
+.foot-col h4{ font-family:var(--font-body); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; font-weight:600; }
+.foot-col a, .foot-col p{ display:block; font-size:15px; color:var(--ink); margin-bottom:10px; }
+.foot-col a:hover{ color:var(--primary); }
+.foot-bottom{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-top:46px; padding-top:26px; border-top:1px solid var(--line); }
+.foot-bottom p{ font-size:13.5px; color:var(--muted); }
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1000px){
+  .nav-links, .nav-phone{ display:none; }
+  .burger{ display:flex; }
+}
+@media(max-width:980px){
+  .hero-grid{ grid-template-columns:1fr; gap:48px; }
+  .hero-visual{ max-width:440px; }
+  .services-grid, .price-grid, .tgrid{ grid-template-columns:1fr 1fr; }
+  .steps{ grid-template-columns:1fr 1fr; gap:34px 20px; }
+  .step .line{ display:none; }
+  .about-grid{ grid-template-columns:1fr; gap:40px; }
+  .about-photo{ max-width:380px; }
+  .foot-grid{ grid-template-columns:1fr 1fr; gap:34px; }
+}
+@media(max-width:680px){
+  body{ font-size:17px; }
+  .wrap{ padding:0 22px; }
+  .section{ padding:72px 0; }
+  .services-grid, .price-grid, .tgrid, .steps{ grid-template-columns:1fr; }
+  .plan.featured{ transform:none; }
+  .cta-box{ padding:48px 26px; }
+  .foot-grid{ grid-template-columns:1fr 1fr; }
+  .hero-badge{ left:0; }
+}
+.mobile-menu.open{ display:flex; }
+.mobile-menu{ display:none; flex-direction:column; gap:4px; padding:14px 22px 22px; border-top:1px solid var(--line); background:var(--bg); }
+.mobile-menu a{ padding:12px 4px; font-weight:500; border-bottom:1px solid var(--line); }
+.mobile-menu .btn{ margin-top:14px; justify-content:center; }
+
+#tweaks-root{ position:fixed; z-index:9999; }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="mark">RGC</span>
+      <span>RGC Accounting<small>Rosie Bui, Bookkeeping &amp; Tax</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#process">How it works</a>
+      <a href="#about">About</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#reviews">Reviews</a>
+    </nav>
+    <div class="nav-cta">
+      <span class="nav-phone"><span>Call&nbsp;</span>(555)&nbsp;012&#8209;3456</span>
+      <a href="#contact" class="btn btn-primary">Get in touch</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Services</a>
+    <a href="#process">How it works</a>
+    <a href="#about">About</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact" class="btn btn-primary">Get in touch</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <span class="hero-blob"></span>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Bookkeeping &amp; tax, done for you</span>
+      <h1>Taxes don't have to be <em>stressful.</em></h1>
+      <p class="hero-sub">I'm Rosie — and I help independent contractors, freelancers, and small businesses keep clean books, file on time, and actually understand their numbers. No jargon, no judgment.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Book a free intro call <span class="arrow">→</span></a>
+        <a href="#pricing" class="btn btn-ghost">See pricing</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><b>10+ yrs</b><span>Helping the self-employed</span></div>
+        <div class="trust-item"><b>180+</b><span>Returns filed</span></div>
+        <div class="trust-item"><b>4.9★</b><span>Average client rating</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img class="hero-photo" src="rosie-hero-v3.jpg" alt="Rosie Bui working at her desk" style="width:100%; object-fit:cover; border:1px solid var(--line); background:var(--surface-2);" />
+      <div class="hero-badge">
+        <span class="dot">✓</span>
+        <p><b>QuickBooks Certified</b> ProAdvisor — your books in expert hands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOGOS / CLIENTS ============ -->
+<div class="wrap">
+  <div class="logos">
+    <div class="logos-row">
+      <span class="logos-lead" style="font-family:var(--font-body)">Trusted by people who work for themselves</span>
+      <span>Freelancers</span>
+      <span>Contractors</span>
+      <span>Etsy sellers</span>
+      <span>Consultants</span>
+      <span>Small shops</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What I do</span>
+      <h2>Everything you need to stay organized and stress-free.</h2>
+      <p>From day-to-day bookkeeping to year-end taxes, I handle the financial side so you can get back to the work you love.</p>
+    </div>
+    <div class="services-grid">
+      <article class="svc">
+        <div class="svc-num">01</div>
+        <h3>Bookkeeping</h3>
+        <p>Clean, accurate, up-to-date books every month — categorized, reconciled, and ready whenever you need them.</p>
+        <ul><li>Monthly reconciliation</li><li>Expense categorization</li><li>Plain-English reports</li></ul>
+      </article>
+      <article class="svc">
+        <div class="svc-num">02</div>
+        <h3>Tax Preparation</h3>
+        <p>Personal and business returns filed accurately and on time, with every deduction you're entitled to.</p>
+        <ul><li>Self-employment &amp; 1099s</li><li>Quarterly estimates</li><li>Maximized deductions</li></ul>
+      </article>
+      <article class="svc">
+        <div class="svc-num">03</div>
+        <h3>Catch-up &amp; Cleanup</h3>
+        <p>Behind on your books? I'll untangle months (or years) of backlog and get you current — judgment-free.</p>
+        <ul><li>Historical cleanup</li><li>Account reconciliation</li><li>Audit-ready records</li></ul>
+      </article>
+      <article class="svc">
+        <div class="svc-num">04</div>
+        <h3>Payroll Support</h3>
+        <p>Pay yourself and any team members correctly, with filings and records handled the right way.</p>
+        <ul><li>Payroll setup</li><li>Contractor payments</li><li>Year-end 1099/W-2</li></ul>
+      </article>
+      <article class="svc">
+        <div class="svc-num">05</div>
+        <h3>Advisory &amp; Planning</h3>
+        <p>Know what you can spend, save, and set aside for taxes — with a real person to ask anytime.</p>
+        <ul><li>Cash-flow guidance</li><li>Tax-saving strategy</li><li>Quarterly check-ins</li></ul>
+      </article>
+      <article class="svc">
+        <div class="svc-num">06</div>
+        <h3>Getting Set Up</h3>
+        <p>New to self-employment? I'll help you start clean with the right tools, accounts, and habits from day one.</p>
+        <ul><li>Software setup</li><li>Chart of accounts</li><li>Simple systems</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="section process" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Getting started is genuinely easy.</h2>
+      <p>No long contracts or confusing onboarding. Here's exactly what happens when we work together.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="line"></span><h3>Say hello</h3><p>Book a free, no-pressure call so I can learn about you and your business.</p></div>
+      <div class="step"><span class="line"></span><h3>We get organized</h3><p>I connect your accounts, tidy up your records, and set up simple systems.</p></div>
+      <div class="step"><span class="line"></span><h3>I handle the books</h3><p>Each month I reconcile, categorize, and send you clear, easy-to-read reports.</p></div>
+      <div class="step"><span class="line"></span><h3>Peace of mind</h3><p>You always know where you stand — and tax season becomes a non-event.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual">
+      <img class="about-photo" src="rosie-about.jpg" alt="Portrait of Rosie Bui" style="width:100%; object-fit:cover; border:1px solid var(--line); background:var(--surface-2);" />
+    </div>
+    <div class="about">
+      <span class="eyebrow">Meet Rosie</span>
+      <h2>A friendly numbers person in your corner.</h2>
+      <p>I started RGC Accounting because so many talented, hard-working people were losing sleep over spreadsheets and shoeboxes of receipts. <strong>It shouldn't be that way.</strong></p>
+      <p>For over a decade I've worked with freelancers, contractors, and small-business owners — the kind of folks who pour everything into their craft but dread the financial admin. My job is to take all of that off your plate, explain things in plain language, and make sure you never miss a deadline or a deduction.</p>
+      <p>When we work together, you get a real person who actually picks up the phone — not a faceless firm.</p>
+      <div class="about-sign">— Rosie Bui</div>
+      <div class="about-stats">
+        <div><b>10+</b><span>Years experience</span></div>
+        <div><b>120+</b><span>Happy clients</span></div>
+        <div><b>QuickBooks</b><span>Certified ProAdvisor</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="section pricing" id="pricing">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow" style="justify-content:center">Simple, honest pricing</span>
+      <h2>Plans that grow with you.</h2>
+      <p>Flat monthly pricing with no surprises. Cancel anytime — though most folks stick around.</p>
+      <div class="bill-toggle">
+        <button class="active" data-bill="monthly" onclick="setBill('monthly')">Monthly</button>
+        <button data-bill="annual" onclick="setBill('annual')">Annual<span class="bill-save">−15%</span></button>
+      </div>
+    </div>
+    <div class="price-grid">
+      <div class="plan">
+        <h3>Essentials</h3>
+        <p class="plan-desc">For solo freelancers who just need clean books and on-time taxes.</p>
+        <div class="price"><span class="amt" data-m="250" data-a="213">$250</span><small>/mo</small></div>
+        <div class="price-sub">Billed monthly</div>
+        <ul>
+          <li>Monthly bookkeeping</li>
+          <li>Quarterly tax estimates</li>
+          <li>Annual tax return</li>
+          <li>Email support</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Get started</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-tag">Most popular</div>
+        <h3>Growth</h3>
+        <p class="plan-desc">For contractors and small businesses with a bit more going on.</p>
+        <div class="price"><span class="amt" data-m="450" data-a="383">$450</span><small>/mo</small></div>
+        <div class="price-sub">Billed monthly</div>
+        <ul>
+          <li>Everything in Essentials</li>
+          <li>Bill &amp; invoice tracking</li>
+          <li>Payroll for up to 3 people</li>
+          <li>Monthly review call</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#contact" class="btn btn-light">Get started</a>
+      </div>
+      <div class="plan">
+        <h3>Full Service</h3>
+        <p class="plan-desc">For growing businesses that want a true financial partner.</p>
+        <div class="price"><span class="amt" data-m="750" data-a="638">$750</span><small>/mo</small></div>
+        <div class="price-sub">Billed monthly</div>
+        <ul>
+          <li>Everything in Growth</li>
+          <li>Advisory &amp; planning</li>
+          <li>Unlimited payroll</li>
+          <li>Quarterly strategy sessions</li>
+          <li>Direct line to Rosie</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Get started</a>
+      </div>
+    </div>
+    <p class="price-note">Just need a one-off tax return? Personal returns start at <strong>$300</strong>. <a href="#contact">Ask about a custom quote →</a></p>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow" style="justify-content:center">Kind words</span>
+      <h2>People sleep better with Rosie on their books.</h2>
+    </div>
+    <div class="tgrid">
+      <article class="tcard">
+        <div class="stars">★★★★★</div>
+        <blockquote>Rosie took three years of messy receipts and turned them into clean books in a couple of weeks. I finally feel in control of my business.</blockquote>
+        <div class="tperson"><span class="tavatar">DM</span><div><b>Daniel M.</b><span>Freelance photographer</span></div></div>
+      </article>
+      <article class="tcard">
+        <div class="stars">★★★★★</div>
+        <blockquote>I used to dread tax season. Now I barely notice it happens. She catches deductions I never would've found and explains everything so clearly.</blockquote>
+        <div class="tperson"><span class="tavatar">PK</span><div><b>Priya K.</b><span>Independent consultant</span></div></div>
+      </article>
+      <article class="tcard">
+        <div class="stars">★★★★★</div>
+        <blockquote>Working with RGC feels like having a financial co-pilot. Rosie is responsive, warm, and genuinely cares whether my little shop succeeds.</blockquote>
+        <div class="tperson"><span class="tavatar">JR</span><div><b>Jordan R.</b><span>Etsy shop owner</span></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA / CONTACT ============ -->
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="cta-box">
+      <span class="cta-glow"></span><span class="cta-glow two"></span>
+      <span class="eyebrow">Let's talk</span>
+      <h2>Ready to hand off the books for good?</h2>
+      <p>Reach out for a free, no-obligation chat. Tell me a little about your business and I'll show you exactly how I can help.</p>
+      <div class="cta-contact">
+        <a href="mailto:hello@rgcaccounting.com">✉ hello@rgcaccounting.com</a>
+        <a href="tel:+15550123456">✆ (555) 012-3456</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="brand"><span class="mark">RGC</span><span>RGC Accounting</span></a>
+        <p>Friendly, reliable bookkeeping and tax help for the self-employed and small businesses. Serving the Bay Area &amp; remote clients nationwide.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <a href="#services">Bookkeeping</a>
+        <a href="#services">Tax preparation</a>
+        <a href="#services">Catch-up &amp; cleanup</a>
+        <a href="#services">Advisory</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#about">About Rosie</a>
+        <a href="#process">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <a href="mailto:hello@rgcaccounting.com">hello@rgcaccounting.com</a>
+        <a href="tel:+15550123456">(555) 012-3456</a>
+        <p>Mon–Fri, 9–5 PT</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 RGC Accounting · Rosie Bui. All rights reserved.</p>
+      <p>Bookkeeping · Tax · Advisory for the self-employed</p>
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+  // header scroll state
+  const hdr = document.getElementById('hdr');
+  addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 12), {passive:true});
+  // mobile menu
+  const burger = document.getElementById('burger');
+  const mm = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => mm.classList.toggle('open'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+  // billing toggle
+  function setBill(mode){
+    document.querySelectorAll('.bill-toggle button').forEach(b => b.classList.toggle('active', b.dataset.bill === mode));
+    document.querySelectorAll('.price-sub').forEach(s => s.textContent = mode === 'annual' ? 'Billed annually · save 15%' : 'Billed monthly');
+    document.querySelectorAll('.amt').forEach(el => {
+      el.textContent = '$' + (mode === 'annual' ? el.dataset.a : el.dataset.m);
+    });
+  }
+</script>
+
+</body>
+</html>
