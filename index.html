@@ -224,8 +224,9 @@ header.scrolled{ border-bottom-color:var(--line); background:color-mix(in oklch,
 .about p{ font-size:18px; color:var(--muted); margin-bottom:18px; }
 .about p strong{ color:var(--ink); font-weight:600; }
 .about-sign{ font-family:var(--font-head); font-style:italic; font-size:27px; color:var(--primary); margin-top:8px; }
-.about-stats{ display:flex; gap:40px; margin-top:30px; padding-top:28px; border-top:1px solid var(--line); }
-.about-stats b{ font-family:var(--font-head); font-weight:600; font-size:32px; display:block; color:var(--ink); }
+.about-stats{ display:flex; flex-wrap:wrap; gap:28px 40px; margin-top:30px; padding-top:28px; border-top:1px solid var(--line); }
+.about-stats > div{ flex:1 1 auto; min-width:0; }
+.about-stats b{ font-family:var(--font-head); font-weight:600; font-size:32px; display:block; color:var(--ink); line-height:1.05; }
 .about-stats span{ font-size:14px; color:var(--muted); }
 
 /* ============ PRICING ============ */
@@ -323,6 +324,14 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
   .hero-actions .btn{ padding:12px 20px; font-size:15px; }
   .brand small{ white-space:normal; }
   .brand{ font-size:20px; }
+  .about-stats{ gap:22px 30px; }
+  .about-stats b{ font-size:27px; }
+  .foot-grid{ grid-template-columns:1fr; gap:30px; }
+  .cta-contact{ flex-direction:column; gap:14px; }
+  .cta-contact a{ font-size:18px; word-break:break-word; }
+}
+@media(max-width:480px){
+  .nav-cta .btn-primary{ display:none; }
 }
 .mobile-menu.open{ display:flex; }
 .mobile-menu{ display:none; flex-direction:column; gap:4px; padding:14px 22px 22px; border-top:1px solid var(--line); background:var(--bg); }
