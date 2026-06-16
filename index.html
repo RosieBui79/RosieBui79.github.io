@@ -146,9 +146,9 @@ header.scrolled{ border-bottom-color:var(--line); background:color-mix(in oklch,
 .hero-sub{ font-size:20px; color:var(--muted); max-width:30em; margin-bottom:34px; }
 .hero-actions{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
 .hero-trust{ display:flex; flex-wrap:wrap; gap:26px; margin-top:40px; padding-top:30px; border-top:1px solid var(--line); }
-.trust-item{ display:flex; flex-direction:column; gap:2px; }
+.trust-item{ display:flex; flex-direction:column; gap:3px; flex:1 1 0; min-width:150px; }
 .trust-item b{ font-family:var(--font-head); font-weight:600; font-size:26px; color:var(--ink); }
-.trust-item span{ font-size:13.5px; color:var(--muted); font-weight:500; }
+.trust-item span{ font-size:13.5px; color:var(--muted); font-weight:500; line-height:1.35; }
 
 .hero-visual{ position:relative; }
 .hero-photo{ aspect-ratio:4/5; border-radius:var(--radius); }
@@ -226,15 +226,11 @@ header.scrolled{ border-bottom-color:var(--line); background:color-mix(in oklch,
 .about-sign{ font-family:var(--font-head); font-style:italic; font-size:27px; color:var(--primary); margin-top:8px; }
 .about-stats{ display:flex; flex-wrap:wrap; gap:28px 40px; margin-top:30px; padding-top:28px; border-top:1px solid var(--line); }
 .about-stats > div{ flex:1 1 auto; min-width:0; }
-.about-stats b{ font-family:var(--font-head); font-weight:600; font-size:32px; display:block; color:var(--ink); line-height:1.05; }
-.about-stats span{ font-size:14px; color:var(--muted); }
+.about-stats b{ font-family:var(--font-head); font-weight:600; font-size:21px; display:block; color:var(--ink); line-height:1.15; margin-bottom:3px; }
+.about-stats span{ font-size:14px; color:var(--muted); line-height:1.4; }
 
 /* ============ PRICING ============ */
 .pricing{ background:var(--surface-2); }
-.bill-toggle{ display:inline-flex; align-items:center; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:var(--pill); padding:5px; margin:24px auto 0; }
-.bill-toggle button{ font-family:var(--font-body); font-weight:600; font-size:14.5px; padding:9px 20px; border-radius:var(--pill); border:none; background:transparent; color:var(--muted); cursor:pointer; transition:.25s; }
-.bill-toggle button.active{ background:var(--primary); color:var(--on-primary); }
-.bill-save{ font-size:13px; color:var(--primary); font-weight:600; margin-left:4px; }
 .price-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:48px; align-items:start; }
 .plan{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:34px 30px; transition:all .3s var(--ease); }
 .plan.featured{ background:var(--primary-deep); color:var(--on-primary); border-color:var(--primary-deep); transform:scale(1.03); box-shadow:0 30px 60px -30px var(--primary); }
@@ -258,16 +254,37 @@ header.scrolled{ border-bottom-color:var(--line); background:color-mix(in oklch,
 .price-note{ text-align:center; margin-top:32px; font-size:15px; color:var(--muted); }
 .price-note a{ color:var(--primary); font-weight:600; text-decoration:underline; text-underline-offset:3px; }
 
+/* pricing guide panel */
+.price-guide{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); margin-top:34px; padding:44px 46px; }
+.price-guide h3{ font-size:26px; margin-bottom:8px; }
+.price-guide .pg-lead{ font-size:16.5px; color:var(--muted); margin-bottom:26px; }
+.pg-table{ width:100%; border-collapse:collapse; }
+.pg-table th, .pg-table td{ text-align:left; padding:14px 8px; border-bottom:1px solid var(--line); font-size:16px; }
+.pg-table th{ font-family:var(--font-body); font-weight:600; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+.pg-table td:last-child, .pg-table th:last-child{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.pg-table td:last-child{ font-weight:600; color:var(--primary-deep); }
+.pg-table tr:last-child td{ border-bottom:none; }
+.pg-note{ font-size:14.5px; color:var(--muted); margin-top:18px; line-height:1.55; }
+.pg-split{ display:grid; grid-template-columns:1fr 1fr; gap:34px; margin-top:34px; padding-top:32px; border-top:1px solid var(--line); }
+.pg-split h4{ font-size:18px; margin-bottom:16px; }
+.pg-addons{ list-style:none; display:flex; flex-direction:column; gap:11px; }
+.pg-addons li{ font-size:15.5px; display:flex; justify-content:space-between; gap:14px; align-items:baseline; }
+.pg-addons li span:first-child{ color:var(--ink); }
+.pg-addons li span:last-child{ color:var(--primary-deep); font-weight:600; text-align:right; white-space:nowrap; }
+.pg-custom p{ font-size:15.5px; color:var(--muted); line-height:1.6; margin-bottom:18px; }
+.pg-custom .btn{ width:100%; justify-content:center; }
+@media(max-width:680px){
+  .price-guide{ padding:30px 22px; }
+  .pg-split{ grid-template-columns:1fr; gap:28px; }
+  .pg-table th, .pg-table td{ font-size:14.5px; padding:12px 4px; }
+}
+
 /* ============ TESTIMONIALS ============ */
 .tgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
 .tcard{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:32px 30px; display:flex; flex-direction:column; }
 .stars{ color:var(--amber); letter-spacing:3px; font-size:15px; margin-bottom:16px; }
 .tcard blockquote{ font-size:17.5px; line-height:1.55; color:var(--ink); flex:1; }
-.tcard blockquote::before{ content:"“"; font-family:var(--font-head); }
-.tperson{ display:flex; align-items:center; gap:13px; margin-top:24px; padding-top:22px; border-top:1px solid var(--line); }
-.tavatar{ width:46px; height:46px; border-radius:50%; background:var(--primary-soft); color:var(--primary-deep); display:grid; place-items:center; font-weight:700; font-size:16px; flex-shrink:0; }
-.tperson b{ font-size:15.5px; display:block; font-weight:600; }
-.tperson span{ font-size:13.5px; color:var(--muted); }
+.tcite{ margin-top:22px; padding-top:20px; border-top:1px solid var(--line); font-size:14.5px; font-weight:600; color:var(--primary-deep); }
 
 /* ============ CTA ============ */
 .cta{ padding:30px 0 100px; }
@@ -325,7 +342,7 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
   .brand small{ white-space:normal; }
   .brand{ font-size:20px; }
   .about-stats{ gap:22px 30px; }
-  .about-stats b{ font-size:27px; }
+  .about-stats b{ font-size:19px; }
   .foot-grid{ grid-template-columns:1fr; gap:30px; }
   .cta-contact{ flex-direction:column; gap:14px; }
   .cta-contact a{ font-size:18px; word-break:break-word; }
@@ -358,7 +375,7 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
       <a href="#reviews">Reviews</a>
     </nav>
     <div class="nav-cta">
-      <span class="nav-phone"><span>Call&nbsp;</span>(555)&nbsp;012&#8209;3456</span>
+      <span class="nav-phone"><span>Call&nbsp;</span>(250)&nbsp;899&#8209;8909</span>
       <a href="#contact" class="btn btn-primary">Get in touch</a>
       <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -380,17 +397,17 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
   <span class="hero-blob"></span>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Bookkeeping &amp; tax, done for you</span>
+      <span class="eyebrow">Bookkeeping &amp; tax, done right for you</span>
       <h1>Taxes don't have to be <em>stressful.</em></h1>
-      <p class="hero-sub">I'm Rosie — and I help independent contractors, freelancers, and small businesses keep clean books, file on time, and actually understand their numbers. No jargon, no judgment.</p>
+      <p class="hero-sub">I'm Rosie — and I help independent contractors, self-employed individuals, and small businesses keep clean books, file on time, and actually understand their numbers. No jargon, no judgment.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Book a free intro call <span class="arrow">→</span></a>
         <a href="#pricing" class="btn btn-ghost">See pricing</a>
       </div>
       <div class="hero-trust">
-        <div class="trust-item"><b>10+ yrs</b><span>Helping the self-employed</span></div>
-        <div class="trust-item"><b>180+</b><span>Returns filed</span></div>
-        <div class="trust-item"><b>4.9★</b><span>Average client rating</span></div>
+        <div class="trust-item"><b>7+ Years</b><span>Accounting, Finance &amp; Business Operations Experience</span></div>
+        <div class="trust-item"><b>Reliable</b><span>Support You Can Count On</span></div>
+        <div class="trust-item"><b>Transparent</b><span>Clear Communication. Honest Answers.</span></div>
       </div>
     </div>
     <div class="hero-visual">
@@ -407,12 +424,12 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
 <div class="wrap">
   <div class="logos">
     <div class="logos-row">
-      <span class="logos-lead" style="font-family:var(--font-body)">Trusted by people who work for themselves</span>
-      <span>Freelancers</span>
+      <span class="logos-lead" style="font-family:var(--font-body)">Who I help</span>
       <span>Contractors</span>
-      <span>Etsy sellers</span>
-      <span>Consultants</span>
-      <span>Small shops</span>
+      <span>Self-Employed</span>
+      <span>Freelancers</span>
+      <span>E-commerce Sellers</span>
+      <span>Small Businesses</span>
     </div>
   </div>
 </div>
@@ -422,45 +439,63 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">What I do</span>
-      <h2>Everything you need to stay organized and stress-free.</h2>
-      <p>From day-to-day bookkeeping to year-end taxes, I handle the financial side so you can get back to the work you love.</p>
+      <h2>Everything you need to stay financially organized and stress-free.</h2>
+      <p>From daily bookkeeping and payroll to taxes and year-end preparation, I handle the financial side so you can focus on running your business — and the vacations after.</p>
     </div>
     <div class="services-grid">
       <article class="svc">
         <div class="svc-num">01</div>
-        <h3>Bookkeeping</h3>
-        <p>Clean, accurate, up-to-date books every month — categorized, reconciled, and ready whenever you need them.</p>
-        <ul><li>Monthly reconciliation</li><li>Expense categorization</li><li>Plain-English reports</li></ul>
+        <h3>Monthly Bookkeeping</h3>
+        <p>Clean, accurate, up-to-date books every month — categorized, reconciled, and ready when you need them.</p>
+        <ul><li>Bank &amp; credit card reconciliation</li><li>Expense categorization</li><li>Monthly cloud bookkeeping</li><li>Financial reporting</li></ul>
       </article>
       <article class="svc">
         <div class="svc-num">02</div>
-        <h3>Tax Preparation</h3>
-        <p>Personal and business returns filed accurately and on time, with every deduction you're entitled to.</p>
-        <ul><li>Self-employment &amp; 1099s</li><li>Quarterly estimates</li><li>Maximized deductions</li></ul>
+        <h3>Accounts Receivable &amp; Payables</h3>
+        <p>Improve cash flow and stay on top of customer payments and vendor obligations.</p>
+        <ul><li>Customer invoicing</li><li>Payment tracking &amp; collections support</li><li>Vendor bill management</li><li>Accounts payable &amp; receivable support</li></ul>
       </article>
       <article class="svc">
         <div class="svc-num">03</div>
-        <h3>Catch-up &amp; Cleanup</h3>
-        <p>Behind on your books? I'll untangle months (or years) of backlog and get you current — judgment-free.</p>
-        <ul><li>Historical cleanup</li><li>Account reconciliation</li><li>Audit-ready records</li></ul>
+        <h3>Payroll Support</h3>
+        <p>Pay yourself, employees, &amp; contractors correctly and on time, with filings and records handled the right way.</p>
+        <ul><li>Payroll setup &amp; processing</li><li>CRA payroll remittances</li><li>ROE filing</li><li>Contractor payments</li></ul>
       </article>
       <article class="svc">
         <div class="svc-num">04</div>
-        <h3>Payroll Support</h3>
-        <p>Pay yourself and any team members correctly, with filings and records handled the right way.</p>
-        <ul><li>Payroll setup</li><li>Contractor payments</li><li>Year-end 1099/W-2</li></ul>
+        <h3>Sales Tax Filing</h3>
+        <p>Stay compliant and avoid costly penalties with timely and accurate sales tax filings.</p>
+        <ul><li>GST, HST, &amp; PST preparation &amp; filing</li><li>Sales tax tracking</li><li>CRA compliance support</li><li>CRA-ready records</li></ul>
       </article>
       <article class="svc">
         <div class="svc-num">05</div>
-        <h3>Advisory &amp; Planning</h3>
-        <p>Know what you can spend, save, and set aside for taxes — with a real person to ask anytime.</p>
-        <ul><li>Cash-flow guidance</li><li>Tax-saving strategy</li><li>Quarterly check-ins</li></ul>
+        <h3>Business Insights &amp; Planning</h3>
+        <p>Understand where your business stands with clear reports and practical insights that help you make informed decisions — with a real person to ask when questions come up.</p>
+        <ul><li>Financial summaries &amp; insights</li><li>Cash flow review &amp; guidance</li><li>Budgeting &amp; tax planning support</li><li>Business performance review</li></ul>
       </article>
       <article class="svc">
         <div class="svc-num">06</div>
-        <h3>Getting Set Up</h3>
-        <p>New to self-employment? I'll help you start clean with the right tools, accounts, and habits from day one.</p>
-        <ul><li>Software setup</li><li>Chart of accounts</li><li>Simple systems</li></ul>
+        <h3>Catch-Up &amp; Cleanup</h3>
+        <p>Behind on your books? I'll untangle months (or years) of backlog and get you current — no judgment.</p>
+        <ul><li>Historical cleanup</li><li>Reconciliations</li><li>Error correction</li><li>Year-end preparation</li></ul>
+      </article>
+      <article class="svc">
+        <div class="svc-num">07</div>
+        <h3>Business Setup &amp; Software Support</h3>
+        <p>New to self-employment? Start with the right systems and proper tools from day one — and keep them running smoothly as your business grows.</p>
+        <ul><li>QuickBooks Online &amp; Xero setup</li><li>Chart of accounts design &amp; setup</li><li>CRM, inventory, POS, &amp; payment setup</li><li>Software integration, migration, &amp; cleanup</li><li>Workflow troubleshooting &amp; improvements</li></ul>
+      </article>
+      <article class="svc">
+        <div class="svc-num">08</div>
+        <h3>CPA-Ready Year-End Preparation</h3>
+        <p>Make year-end easier by providing your tax accountant with organized, accurate, and CPA-ready records.</p>
+        <ul><li>CPA-ready financial records</li><li>Organized year-end documentation</li><li>Supporting schedules &amp; reconciliations</li><li>Smooth year-end accountant handoff</li></ul>
+      </article>
+      <article class="svc">
+        <div class="svc-num">09</div>
+        <h3>Personal &amp; Self-Employed Tax Filing</h3>
+        <p>Accurate tax filing for individuals, couples, sole proprietors, and self-employed professionals.</p>
+        <ul><li>Personal &amp; family tax returns</li><li>Self-employed &amp; sole proprietor returns</li><li>CRA correspondence &amp; support</li><li>Tax credit &amp; deduction optimization</li></ul>
       </article>
     </div>
   </div>
@@ -475,10 +510,10 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
       <p>No long contracts or confusing onboarding. Here's exactly what happens when we work together.</p>
     </div>
     <div class="steps">
-      <div class="step"><span class="line"></span><h3>Say hello</h3><p>Book a free, no-pressure call so I can learn about you and your business.</p></div>
-      <div class="step"><span class="line"></span><h3>We get organized</h3><p>I connect your accounts, tidy up your records, and set up simple systems.</p></div>
-      <div class="step"><span class="line"></span><h3>I handle the books</h3><p>Each month I reconcile, categorize, and send you clear, easy-to-read reports.</p></div>
-      <div class="step"><span class="line"></span><h3>Peace of mind</h3><p>You always know where you stand — and tax season becomes a non-event.</p></div>
+      <div class="step"><span class="line"></span><h3>Let's Talk</h3><p>Book a free, no-pressure call so I can learn about you and your business.</p></div>
+      <div class="step"><span class="line"></span><h3>We Get Organized</h3><p>I'll connect your accounts, clean things up if needed, and set up a system that works for you.</p></div>
+      <div class="step"><span class="line"></span><h3>I Handle the Books</h3><p>I'll keep everything organized, reconciled, and up to date so you always know where you and your business stand — and maybe tax season becomes a non-event.</p></div>
+      <div class="step"><span class="line"></span><h3>You Run Your Business</h3><p>With your books handled, you can spend more time serving your clients and growing your business.</p></div>
     </div>
   </div>
 </section>
@@ -491,15 +526,16 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
     </div>
     <div class="about">
       <span class="eyebrow">Meet Rosie</span>
-      <h2>A friendly numbers person in your corner.</h2>
+      <h2>A down-to-earth numbers person in your corner.</h2>
       <p>I started RGC Accounting because so many talented, hard-working people were losing sleep over spreadsheets and shoeboxes of receipts. <strong>It shouldn't be that way.</strong></p>
-      <p>For over a decade I've worked with freelancers, contractors, and small-business owners — the kind of folks who pour everything into their craft but dread the financial admin. My job is to take all of that off your plate, explain things in plain language, and make sure you never miss a deadline or a deduction.</p>
+      <p>Over the years, I've worked across retail, accounting, finance, operations, construction, manufacturing, logistics, and service-based businesses. I've seen firsthand how much time and energy business owners spend trying to keep up with the financial side of things while they'd rather focus on their craft and growing their business.</p>
+      <p>My job is to take as much of that off your plate as possible, help you stay on track, and give you one less thing to worry about.</p>
       <p>When we work together, you get a real person who actually picks up the phone — not a faceless firm.</p>
       <div class="about-sign">— Rosie Bui</div>
       <div class="about-stats">
-        <div><b>10+</b><span>Years experience</span></div>
-        <div><b>120+</b><span>Happy clients</span></div>
-        <div><b>QuickBooks</b><span>Certified ProAdvisor</span></div>
+        <div><b>QuickBooks Online</b><span>Certified ProAdvisor</span></div>
+        <div><b>Accounting &amp; Finance Background</b><span>Industry Experience. Real-World Perspective.</span></div>
+        <div><b>Contractors &amp; Small Business Focus</b><span>Practical Support. Feasible Solutions.</span></div>
       </div>
     </div>
   </div>
@@ -511,22 +547,19 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
     <div class="section-head center">
       <span class="eyebrow" style="justify-content:center">Simple, honest pricing</span>
       <h2>Plans that grow with you.</h2>
-      <p>Flat monthly pricing with no surprises. Cancel anytime — though most folks stick around.</p>
-      <div class="bill-toggle">
-        <button class="active" data-bill="monthly" onclick="setBill('monthly')">Monthly</button>
-        <button data-bill="annual" onclick="setBill('annual')">Annual<span class="bill-save">−15%</span></button>
-      </div>
+      <p>Flat monthly pricing with no surprises. Cancel anytime — though most people don't.</p>
     </div>
     <div class="price-grid">
       <div class="plan">
-        <h3>Essentials</h3>
-        <p class="plan-desc">For solo freelancers who just need clean books and on-time taxes.</p>
-        <div class="price"><span class="amt" data-m="250" data-a="213">$250</span><small>/mo</small></div>
-        <div class="price-sub">Billed monthly</div>
+        <h3>Starter</h3>
+        <p class="plan-desc">For sole proprietors, self-employed individuals, and service-based businesses with straightforward bookkeeping needs and no inventory tracking.</p>
+        <div class="price"><span class="amt">$250+</span><small>/mo</small></div>
+        <div class="price-sub">Starting at</div>
         <ul>
-          <li>Monthly bookkeeping</li>
-          <li>Quarterly tax estimates</li>
-          <li>Annual tax return</li>
+          <li>Monthly bookkeeping (up to 50 transactions/mo)</li>
+          <li>1 bank account &amp; 1 credit card reconciliation</li>
+          <li>Expense categorization</li>
+          <li>Monthly financial reports</li>
           <li>Email support</li>
         </ul>
         <a href="#contact" class="btn btn-ghost">Get started</a>
@@ -534,34 +567,68 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
       <div class="plan featured">
         <div class="plan-tag">Most popular</div>
         <h3>Growth</h3>
-        <p class="plan-desc">For contractors and small businesses with a bit more going on.</p>
-        <div class="price"><span class="amt" data-m="450" data-a="383">$450</span><small>/mo</small></div>
-        <div class="price-sub">Billed monthly</div>
+        <p class="plan-desc">For growing service-based businesses, contractors, and businesses with payroll, sales tax, or inventory tracking requirements.</p>
+        <div class="price"><span class="amt">$500+</span><small>/mo</small></div>
+        <div class="price-sub">Starting at</div>
         <ul>
-          <li>Everything in Essentials</li>
-          <li>Bill &amp; invoice tracking</li>
-          <li>Payroll for up to 3 people</li>
+          <li>Everything in Starter (up to 150 transactions/mo)</li>
+          <li>Up to 3 bank &amp; credit card accounts</li>
+          <li>Accounts payable &amp; receivable support</li>
+          <li>Payroll for up to 5 employees</li>
+          <li>GST/HST/PST filing</li>
           <li>Monthly review call</li>
-          <li>Priority support</li>
         </ul>
         <a href="#contact" class="btn btn-light">Get started</a>
       </div>
       <div class="plan">
         <h3>Full Service</h3>
-        <p class="plan-desc">For growing businesses that want a true financial partner.</p>
-        <div class="price"><span class="amt" data-m="750" data-a="638">$750</span><small>/mo</small></div>
-        <div class="price-sub">Billed monthly</div>
+        <p class="plan-desc">For established businesses requiring additional support, oversight, and reporting.</p>
+        <div class="price"><span class="amt">$750+</span><small>/mo</small></div>
+        <div class="price-sub">Starting at</div>
         <ul>
           <li>Everything in Growth</li>
-          <li>Advisory &amp; planning</li>
-          <li>Unlimited payroll</li>
-          <li>Quarterly strategy sessions</li>
-          <li>Direct line to Rosie</li>
+          <li>Business insights &amp; planning</li>
+          <li>Cash flow review</li>
+          <li>Priority support</li>
+          <li>Quarterly business review</li>
+          <li>Custom pricing based on complexity</li>
         </ul>
         <a href="#contact" class="btn btn-ghost">Get started</a>
       </div>
     </div>
-    <p class="price-note">Just need a one-off tax return? Personal returns start at <strong>$300</strong>. <a href="#contact">Ask about a custom quote →</a></p>
+    <div class="price-guide">
+      <h3>Not sure which package is right for you?</h3>
+      <p class="pg-lead">Here's what businesses similar to yours typically invest:</p>
+      <table class="pg-table">
+        <thead>
+          <tr><th>Client Type</th><th>Typical Monthly Fee</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sole Proprietor, No Payroll</td><td>$250–$500+</td></tr>
+          <tr><td>Small Service Business</td><td>$300–$800+</td></tr>
+          <tr><td>Trades Company</td><td>$500–$1,500+</td></tr>
+          <tr><td>Retail / E-Commerce</td><td>$600–$1,500+</td></tr>
+          <tr><td>Multi-Employee Company</td><td>$800–$3,000+</td></tr>
+        </tbody>
+      </table>
+      <p class="pg-note">Every business is different. Final pricing depends on transaction volume, number of accounts, payroll requirements, software used, inventory volume and tracking requirements, and the current state and overall complexity of your books.</p>
+      <div class="pg-split">
+        <div>
+          <h4>Additional Services</h4>
+          <ul class="pg-addons">
+            <li><span>Payroll Add-On</span><span>$75–$300 / mo</span></li>
+            <li><span>Catch-Up &amp; Cleanup</span><span>$50–$80 / hr or fixed fee</span></li>
+            <li><span>Software Setup &amp; Migration</span><span>Custom quote</span></li>
+            <li><span>Personal Tax Returns</span><span>Starting at $150</span></li>
+          </ul>
+        </div>
+        <div class="pg-custom">
+          <h4>Need something different?</h4>
+          <p>Not every business fits neatly into a package. One-time projects, initial bookkeeping setup, software setup and training, cleanup work, personal tax returns, year-end accountant packages, and custom bookkeeping solutions are quoted separately.</p>
+          <a href="#contact" class="btn btn-primary">Request a custom quote <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -570,23 +637,23 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
   <div class="wrap">
     <div class="section-head center">
       <span class="eyebrow" style="justify-content:center">Kind words</span>
-      <h2>People sleep better with Rosie on their books.</h2>
+      <h2>What people have said.</h2>
     </div>
     <div class="tgrid">
       <article class="tcard">
         <div class="stars">★★★★★</div>
-        <blockquote>Rosie took three years of messy receipts and turned them into clean books in a couple of weeks. I finally feel in control of my business.</blockquote>
-        <div class="tperson"><span class="tavatar">DM</span><div><b>Daniel M.</b><span>Freelance photographer</span></div></div>
+        <blockquote>“We'll definitely be using you again for our taxes next year. Thank you for going above and beyond for us.”</blockquote>
+        <div class="tcite">— Family Tax Client</div>
       </article>
       <article class="tcard">
         <div class="stars">★★★★★</div>
-        <blockquote>I used to dread tax season. Now I barely notice it happens. She catches deductions I never would've found and explains everything so clearly.</blockquote>
-        <div class="tperson"><span class="tavatar">PK</span><div><b>Priya K.</b><span>Independent consultant</span></div></div>
+        <blockquote>“I don't know what I'd have done without her.”</blockquote>
+        <div class="tcite">— Boutique Store Owner, Year-End Book Cleanup Client</div>
       </article>
       <article class="tcard">
         <div class="stars">★★★★★</div>
-        <blockquote>Working with RGC feels like having a financial co-pilot. Rosie is responsive, warm, and genuinely cares whether my little shop succeeds.</blockquote>
-        <div class="tperson"><span class="tavatar">JR</span><div><b>Jordan R.</b><span>Etsy shop owner</span></div></div>
+        <blockquote>“Thanks to you that it's done — otherwise it would have been chaos. Thank you for your dedicated efforts, for always doing your best for us, and for taking the time to explain everything so clearly. We wouldn't have known what to do.”</blockquote>
+        <div class="tcite">— New-to-Canada Tax Client</div>
       </article>
     </div>
   </div>
@@ -599,10 +666,10 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
       <span class="cta-glow"></span><span class="cta-glow two"></span>
       <span class="eyebrow">Let's talk</span>
       <h2>Ready to hand off the books for good?</h2>
-      <p>Reach out for a free, no-obligation chat. Tell me a little about your business and I'll show you exactly how I can help.</p>
+      <p>Reach out for a free, no-obligation chat. Whether you're starting fresh, cleaning up a mess, or ready to get rid of financial headaches and focus on growing your business, let's build a plan and get you back to doing what you do best.</p>
       <div class="cta-contact">
-        <a href="mailto:hello@rgcaccounting.com">✉ hello@rgcaccounting.com</a>
-        <a href="tel:+15550123456">✆ (555) 012-3456</a>
+        <a href="mailto:rosie@rgcaccounting.com">✉ rosie@rgcaccounting.com</a>
+        <a href="tel:+12508998909">✆ (250) 899-8909</a>
       </div>
     </div>
   </div>
@@ -616,14 +683,14 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
     <div class="foot-grid">
       <div class="foot-brand">
         <a href="#top" class="brand"><span class="mark">RGC</span><span>RGC Accounting</span></a>
-        <p>Friendly, reliable bookkeeping and tax help for the self-employed and small businesses. Serving the Bay Area &amp; remote clients nationwide.</p>
+        <p>Practical bookkeeping, payroll, and tax support for self-employed individuals and small businesses. Serving Kelowna, the Okanagan, and remote clients across Canada.</p>
       </div>
       <div class="foot-col">
         <h4>Services</h4>
-        <a href="#services">Bookkeeping</a>
-        <a href="#services">Tax preparation</a>
-        <a href="#services">Catch-up &amp; cleanup</a>
-        <a href="#services">Advisory</a>
+        <a href="#services">Monthly Bookkeeping</a>
+        <a href="#services">Catch-Up &amp; Cleanup</a>
+        <a href="#services">Business Insights &amp; Planning</a>
+        <a href="#services">Systems &amp; Software Setup &amp; Support</a>
       </div>
       <div class="foot-col">
         <h4>Company</h4>
@@ -634,14 +701,15 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
       </div>
       <div class="foot-col">
         <h4>Get in touch</h4>
-        <a href="mailto:hello@rgcaccounting.com">hello@rgcaccounting.com</a>
-        <a href="tel:+15550123456">(555) 012-3456</a>
-        <p>Mon–Fri, 9–5 PT</p>
+        <a href="mailto:rosie@rgcaccounting.com">rosie@rgcaccounting.com</a>
+        <a href="tel:+12508998909">250 899 8909</a>
+        <p>Kelowna, BC</p>
+        <p>Virtual Services Available</p>
       </div>
     </div>
     <div class="foot-bottom">
       <p>© 2026 RGC Accounting · Rosie Bui. All rights reserved.</p>
-      <p>Bookkeeping · Tax · Advisory for the self-employed</p>
+      <p>Bookkeeping · Payroll · Tax for Self-Employed &amp; Small Businesses</p>
     </div>
   </div>
 </footer>
@@ -658,14 +726,6 @@ footer{ padding:60px 0 40px; border-top:1px solid var(--line); }
   const mm = document.getElementById('mobileMenu');
   burger.addEventListener('click', () => mm.classList.toggle('open'));
   mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
-  // billing toggle
-  function setBill(mode){
-    document.querySelectorAll('.bill-toggle button').forEach(b => b.classList.toggle('active', b.dataset.bill === mode));
-    document.querySelectorAll('.price-sub').forEach(s => s.textContent = mode === 'annual' ? 'Billed annually · save 15%' : 'Billed monthly');
-    document.querySelectorAll('.amt').forEach(el => {
-      el.textContent = '$' + (mode === 'annual' ? el.dataset.a : el.dataset.m);
-    });
-  }
 </script>
 
 </body>
